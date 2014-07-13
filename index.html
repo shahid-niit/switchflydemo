@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <title>SwitchFly Demo</title>
+      <link rel="stylesheet" href="css/normalize.css">
+      <link rel="stylesheet" href="css/style.css">
+      <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+   </head>
+   <body>
+      <!-- Application Template -->
+      <script type="text/x-handlebars">
+         <div class="navbar">
+         <div class="navbar-inner">
+         <a class="brand" href="#">Home</a>
+         <ul class="nav">
+         <li>{{#link-to 'searchFlight'}}Search Flight{{/link-to}}</li>
+         <li>{{#link-to 'flightResult'}}Search Hotel{{/link-to}}</li>
+         <li>{{#link-to 'about'}}About{{/link-to}}</li>
+         </ul>
+         </div>
+         </div>
+
+         {{outlet}}
+      </script>
+      
+      <script type="text/x-handlebars" id="home">
+         <div >
+         <p > A prototype of flight search web application</p>
+         </div>
+                  
+      </script>
+
+      <!-- Search Flight Template -->
+      <script type="text/x-handlebars" id="searchFlight">
+         <div class='searchFlight'>
+         <p> Search for your trip. </p>
+            <p> From : {{input type="text" value=oName}}  To : {{input type="text" value=dName}}  
+            {{#link-to 'search' oName dName}} <button>Search </button> {{/link-to}}
+          </p>
+
+         </div>
+
+         {{outlet}}
+         
+      </script>
+
+      <script type="text/x-handlebars" id="search">
+         <div class="container-fluid">
+         <div class="row-fluid">
+         <div class="span6">
+         <table class='table'>
+         
+         
+         <thead>
+         <tr><th colspan="6">Flights from {{ orgAirport }} to {{dest}}</th><th></th></tr>
+         </thead>
+                  <tr><th>Airline</th><th>Departure</th><th>Arrival</th>
+         <th>Duration</th><th>Ticket</th>
+         </tr>
+        {{#each model.routes}} 
+         {{#each this.segments}}
+
+         {{#if this.itineraries}}
+         
+         {{#each this.itineraries}}
+         {{#each this.legs}}
+         {{#each this.hops}}
+         {{#if airline}}
+         <tr><td>{{#link-to 'flight' this}}
+         {{airline}}{{flight}}{{/link-to}}
+         </td><td>{{format-time sTime}}</td><td>{{format-time tTime}}</td>
+         <!-- <td>{{getAirportName sCode}}</td><td>{{getAirportName tCode}}</td> -->
+         <td>{{format-duration duration}}</td><td>{{getAirlineDetail airline}} </td>
+         </tr>
+         {{/if}}
+         {{/each}}
+         {{/each}}
+         {{/each}}
+         {{/if}}
+         {{/each}}
+         {{/each}}
+                  </table>
+         </div>
+         <div class="span3" style="margin-top: 30px; border: 1" >
+         {{outlet}}
+         </div>
+         </div>
+         </div>
+      </script>
+
+      <script type="text/x-handlebars" id="about">
+         <div class='about'>
+         <p>A prototype for flight search application using Ember.js </p>
+         
+
+         <div class="about-list">
+         <ul> <h4>Technology Used: </h4> 
+         <li> Ember.js </li>
+         <li> Rome2Rio Free Real API’s  </li>
+         <li> Moment.js </li>
+         </ul>
+         </div>
+
+
+         <div class="about-list">
+         <ul> <h4>Topic Covered: </h4> 
+         <li> Basic Ember Controls </li>
+         <li> Nested routes </li>
+         <li> Passing dynamic parameter from template to routes </li>
+         <li> Date formatting using handlebar helper and Moment.js </li>
+         </ul>
+         </div>
+
+
+         </div>
+      </script>
+
+      <script type="text/x-handlebars" id="flight">
+         <div class='flight' >
+         <p><h2>{{getAirlineDetail airline}}</h2></p>
+         <hr>
+         <p>Flight Number: {{flight}}</p>   
+         <p> Departing Time:{{ format-time sTime}} </p>
+         <p> Arrival Time:{{format-time tTime}} </p>
+         <p> Origin : {{getAirportName sCode}}</p>
+         <p> Destination : {{getAirportName tCode}} </p>
+         <p> Terminal : {{tTerminal}} </p>         
+         <p> Duration : {{format-duration duration}} </p>
+         <p> Aircraft : {{aircraft}} </p>
+         
+         </div>
+      </script>
+      
+
+      <script src="js/libs/jquery-1.10.2.js"></script>
+      <script src="js/libs/handlebars-1.1.2.js"></script>
+      <script src="js/libs/ember-1.6.0.js"></script>
+      <script src="js/app.js"></script>
+      <!-- to activate the test runner, add the "?test" query string parameter -->
+      <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.1.0/moment.min.js"></script>
+      <script src="tests/runner.js"></script>
+   </body>
+</html>
