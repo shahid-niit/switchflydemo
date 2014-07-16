@@ -1,8 +1,57 @@
 /* Put your CSS here */
-.ember-application {
+html, body {
     margin: 20px;
 }
 
-.about{float:left;display:block;padding:30px 20px 10px;margin-left:20px;font-size:25px;font-weight:200;color:#777777;text-shadow:0 1px 0 #ffffff;}
+.page-header a h1 {
+  color: #555;
+}
 
-.about-list{float:left;display:block;padding:30px 20px 10px;margin-left:20px;font-size:15px;font-weight:100;color:#777777;text-shadow:0 1px 0 #ffffff;}
+.empty-list {
+  min-height: 100px;
+  text-align: center;
+}
+
+.empty-list .empty-message {
+  display: inline-block;
+  color: #555;
+  line-height: 100px;
+}
+
+.artist-link .pointer {
+  float: right;
+  display: none;
+}
+
+.artist-link.active .pointer {
+  display: block;
+}
+
+.new-artist {
+  height: 35px;
+  width: 30%;
+}
+
+.new-artist-button {
+  margin-left: 2em;
+  padding: 3px 10px;
+}
+
+.new-song {
+  width: 50%;
+}
+
+.new-song-button {
+  margin-left: 20px;
+}
+
+.rating-panel {
+  display: inline-block;
+  float: right;
+}
+
+.rating-star {
+  display: inline;
+  float: left;
+  margin-left: 3px;
+}
