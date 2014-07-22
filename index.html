@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/bootstrap.css">
-  <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/bootstrap-combined.no-icons.min.css" >
 </head>
 <body>
   <script type="text/x-handlebars">
@@ -74,7 +74,7 @@
 
 
            <div style="color: gray;font-size: 18px;margin-bottom: 11px; margin-top: 10px;">
-           Flights from {{ model.origin }} to {{model.dest}}
+           Flights from {{ getAirportName model.origin }} to {{ getAirportName model.dest}}
            </div>
 
                <table class='table'>
