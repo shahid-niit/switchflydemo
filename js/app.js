@@ -129,7 +129,7 @@ Ember.Handlebars.helper('format-time', function(time) {
 
 Ember.Handlebars.helper('getAirportName', function(code) {
   //console.log(airports.findBy('code', code).name);
-  var airport = airports.findBy('code', code);
+  var airport = airports.findBy('code', code.toUpperCase());
   //this.set('orgAirport', airport.name + " ( " + code +")");
   return airport.name + " ( " + code +")";
 });
